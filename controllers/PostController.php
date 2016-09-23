@@ -11,6 +11,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use yii\data\ActiveDataProvider;
 
 /**
  * PostController implements the CRUD actions for Post model.
@@ -66,8 +67,19 @@ class PostController extends Controller
 
         $comment = new Comment;
 
+        $query = Post::find();
+
+        $query->andFilterWhere([
+            'post_id' => $id,
+        ]);
+
+        $postDataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'postDataProvider' => $postDataProvider,
             'commentDataProvider' => $commentDataProvider,
             'comment' => $comment,
         ]);
