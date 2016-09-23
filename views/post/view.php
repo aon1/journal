@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="col-md-12 blogShort">
                         <h1>' . $model->title . '</h1>
                         <img src="uploads/'. $model->avatar . '" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail" width="100px">
-                        <em>' . $model->author . ' on ' . $model->created_at . '</em>                
+                        <em>' . $model->author . ' on ' . Yii::$app->formatter->asDatetime($model->created_at) . '</em>                
                         <article><br><p>' . $model->body . '</p></article> 
                     </div>';
             },
@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading">' . $model->author . '
-                            <small>' . $model->created_at . '</small>
+                            <small>' . Yii::$app->formatter->asDatetime($model->created_at) . '</small>
                         </h4>
                         ' . $model->text . '
                     </div>
